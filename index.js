@@ -33,15 +33,14 @@ app.get('/student/:id', studentController.getStudent);
 app.get('/students-by-college/:college', studentController.getStudentsByCollege);
 
 // connect to db
-var conn_string = config.get('DB_CONNECTION_STRING');
+var conn_string = process.env.DATABASE_URL || config.get('DB_CONNECTION_STRING');
 mongoose.connect(conn_string, { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection
 db.once('open', () => {
   console.log('Database connected:', conn_string);
-  console.log(process.env.DATABASE_URL);
 })
 db.on('error', err => {
-  console.error('connection error:', conn_string)
+  console.error('connection error:', err)
 });
 
 // Start express server
