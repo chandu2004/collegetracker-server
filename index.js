@@ -35,8 +35,10 @@ app.get('/students-by-college/:college', studentController.getStudentsByCollege)
 app.get('/test', function(req, res) {
   res.send("server is listening to your requests");
 });
+
 // connect to db
-var conn_string = config.get('DB_CONNECTION_STRING');
+// var conn_string = config.get('DB_CONNECTION_STRING');
+var conn_string = "mongodb+srv://user:user456@cluster0.wvn4h.mongodb.net/<dbname>?retryWrites=true&w=majority";
 mongoose.connect(conn_string, { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection
 db.once('open', () => {
