@@ -32,20 +32,16 @@ app.get('/student/:id', studentController.getStudent);
 // get students by college
 app.get('/students-by-college/:college', studentController.getStudentsByCollege);
 
-app.get('/test', function(req, res) {
-  res.send("server is listening to your requests");
-});
-
 // connect to db
-// var conn_string = config.get('DB_CONNECTION_STRING');
-var conn_string = "mongodb+srv://user:user456@cluster0.wvn4h.mongodb.net/<dbname>?retryWrites=true&w=majority";
+var conn_string = config.get('DB_CONNECTION_STRING');
 mongoose.connect(conn_string, { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection
 db.once('open', () => {
   console.log('Database connected:', conn_string);
+  console.log(process.env.DATABASE_URL);
 })
 db.on('error', err => {
-  console.error('connection error:', err)
+  console.error('connection error:', conn_string)
 });
 
 // Start express server
