@@ -1,4 +1,4 @@
 {
     "PORT": 3000,
-    "DB_CONNECTION_STRING": "mongodb://localhost:27017/oneshotai"
+    "DB_CONNECTION_STRING": "mongodb+srv://user:user456@cluster0.wvn4h.mongodb.net/<dbname>?retryWrites=true&w=majority"
 }
